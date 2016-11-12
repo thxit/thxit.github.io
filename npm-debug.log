@@ -1,0 +1,88 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/nodejs',
+1 verbose cli   '/usr/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   'hexo-renderer-jade',
+1 verbose cli   '--save',
+1 verbose cli   '--registry=https://registry.npm.taobao.org' ]
+2 info using npm@3.10.8
+3 info using node@v6.3.1
+4 silly loadCurrentTree Starting
+5 silly install loadCurrentTree
+6 silly install readLocalPackageData
+7 silly fetchPackageMetaData hexo-renderer-jade
+8 silly fetchNamedPackageData hexo-renderer-jade
+9 silly mapToRegistry name hexo-renderer-jade
+10 silly mapToRegistry using default registry
+11 silly mapToRegistry registry https://registry.npm.taobao.org/
+12 silly mapToRegistry data Result {
+12 silly mapToRegistry   raw: 'hexo-renderer-jade',
+12 silly mapToRegistry   scope: null,
+12 silly mapToRegistry   escapedName: 'hexo-renderer-jade',
+12 silly mapToRegistry   name: 'hexo-renderer-jade',
+12 silly mapToRegistry   rawSpec: '',
+12 silly mapToRegistry   spec: 'latest',
+12 silly mapToRegistry   type: 'tag' }
+13 silly mapToRegistry uri https://registry.npm.taobao.org/hexo-renderer-jade
+14 verbose request uri https://registry.npm.taobao.org/hexo-renderer-jade
+15 verbose request no auth needed
+16 info attempt registry request try #1 at 上午9:28:10
+17 verbose request id eb38650a52506fc5
+18 http request GET https://registry.npm.taobao.org/hexo-renderer-jade
+19 info retry will retry, error on last attempt: Error: tunneling socket could not be established, cause=Parse Error
+20 info attempt registry request try #2 at 上午9:28:20
+21 http request GET https://registry.npm.taobao.org/hexo-renderer-jade
+22 info retry will retry, error on last attempt: Error: tunneling socket could not be established, cause=Parse Error
+23 info attempt registry request try #3 at 上午9:29:20
+24 http request GET https://registry.npm.taobao.org/hexo-renderer-jade
+25 silly fetchPackageMetaData Error: tunneling socket could not be established, cause=Parse Error
+25 silly fetchPackageMetaData     at ClientRequest.onError (/usr/lib/node_modules/npm/node_modules/request/node_modules/tunnel-agent/index.js:176:17)
+25 silly fetchPackageMetaData     at ClientRequest.g (events.js:286:16)
+25 silly fetchPackageMetaData     at emitOne (events.js:96:13)
+25 silly fetchPackageMetaData     at ClientRequest.emit (events.js:188:7)
+25 silly fetchPackageMetaData     at Socket.socketOnData (_http_client.js:366:9)
+25 silly fetchPackageMetaData     at emitOne (events.js:96:13)
+25 silly fetchPackageMetaData     at Socket.emit (events.js:188:7)
+25 silly fetchPackageMetaData     at readableAddChunk (_stream_readable.js:177:18)
+25 silly fetchPackageMetaData     at Socket.Readable.push (_stream_readable.js:135:10)
+25 silly fetchPackageMetaData     at TCP.onread (net.js:542:20)
+25 silly fetchPackageMetaData  error for hexo-renderer-jade { Error: tunneling socket could not be established, cause=Parse Error
+25 silly fetchPackageMetaData     at ClientRequest.onError (/usr/lib/node_modules/npm/node_modules/request/node_modules/tunnel-agent/index.js:176:17)
+25 silly fetchPackageMetaData     at ClientRequest.g (events.js:286:16)
+25 silly fetchPackageMetaData     at emitOne (events.js:96:13)
+25 silly fetchPackageMetaData     at ClientRequest.emit (events.js:188:7)
+25 silly fetchPackageMetaData     at Socket.socketOnData (_http_client.js:366:9)
+25 silly fetchPackageMetaData     at emitOne (events.js:96:13)
+25 silly fetchPackageMetaData     at Socket.emit (events.js:188:7)
+25 silly fetchPackageMetaData     at readableAddChunk (_stream_readable.js:177:18)
+25 silly fetchPackageMetaData     at Socket.Readable.push (_stream_readable.js:135:10)
+25 silly fetchPackageMetaData     at TCP.onread (net.js:542:20) code: 'ECONNRESET' }
+26 silly rollbackFailedOptional Starting
+27 silly rollbackFailedOptional Finishing
+28 silly runTopLevelLifecycles Finishing
+29 silly install printInstalled
+30 verbose stack Error: tunneling socket could not be established, cause=Parse Error
+30 verbose stack     at ClientRequest.onError (/usr/lib/node_modules/npm/node_modules/request/node_modules/tunnel-agent/index.js:176:17)
+30 verbose stack     at ClientRequest.g (events.js:286:16)
+30 verbose stack     at emitOne (events.js:96:13)
+30 verbose stack     at ClientRequest.emit (events.js:188:7)
+30 verbose stack     at Socket.socketOnData (_http_client.js:366:9)
+30 verbose stack     at emitOne (events.js:96:13)
+30 verbose stack     at Socket.emit (events.js:188:7)
+30 verbose stack     at readableAddChunk (_stream_readable.js:177:18)
+30 verbose stack     at Socket.Readable.push (_stream_readable.js:135:10)
+30 verbose stack     at TCP.onread (net.js:542:20)
+31 verbose cwd /home/van/thxit.github.io
+32 error Linux 4.4.0-2-deepin-amd64
+33 error argv "/usr/bin/nodejs" "/usr/bin/npm" "install" "hexo-renderer-jade" "--save" "--registry=https://registry.npm.taobao.org"
+34 error node v6.3.1
+35 error npm  v3.10.8
+36 error code ECONNRESET
+37 error network tunneling socket could not be established, cause=Parse Error
+38 error network This is most likely not a problem with npm itself
+38 error network and is related to network connectivity.
+38 error network In most cases you are behind a proxy or have bad network settings.
+38 error network
+38 error network If you are behind a proxy, please make sure that the
+38 error network 'proxy' config is set properly.  See: 'npm help config'
+39 verbose exit [ 1, true ]

@@ -3,13 +3,19 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Thxit的博客
-subtitle: 一直一个人
+title: Thxit
+subtitle: 
 description:
 author: Thxit
 language: zh-Hans
 timezone:
 
+
+
+
+
+favicon: /image/header.jpg # your favicon png
+# custom end
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: http://yoursite.com
@@ -63,10 +69,53 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: yelees
+theme: Anisina
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
   repo: git@github.com:thxit/thxit.github.io.git
   branch: master
+
+
+# New add 2019/2/16
+# custom Site settings
+# more detail check out docs
+SEOTitle: Thxit's blog 
+header-img: /image/header.jpg
+email: 
+keyword: # seo key words
+weibo_username: Vivanke
+zhihu_username: lancer-wan
+github_username: thxit
+
+
+# Sidebar settings
+sidebar-about-description: "一个尚未脱离低级趣味的人" # 个人描述
+sidebar-avatar:  /image/header.jpg   # use absolute URL
+
+# Featured Tags
+featured-tags: true                     # whether or not using Feature-Tags
+featured-condition-size: 0              # A tag will be featured if the size of it is more than this condition value
+
+# friends
+# friends:  # 友链
+#如题所示，注意使用json的方式
+friends: [
+    {
+        title: "掘金",
+        href: "https://juejin.im/user/5b854099f265da433874ee02"
+    },
+    {
+        其他的按照上面的方式进行配置...
+    }
+    ] 
+
+# post default images
+post-default-img: /image/yourname.jpeg #博文默认的图片
+post-default-img-mobile: /image/yourname.jpeg #移动端显示的图片
+
+# archive page title 
+archive:
+    title: archives
+    description: 可以根据归档日期检索所有文件

@@ -15,16 +15,12 @@
 
 
 
-<meta name="description" content="在使用git进行clone或者push操作的时候，由于众所周知的原因，网络速度经常慢到只有几kb/s，所以我们可以通过为Git设置代理的方法加快git的网络速度。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="为Git设置代理">
-<meta property="og:url" content="http://yoursite.com/2016/11/12/为Git设置代理/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Thxit的博客">
+<meta property="og:url" content="http://yoursite.com/tags/Python/index.html">
 <meta property="og:site_name" content="Thxit的博客">
-<meta property="og:description" content="在使用git进行clone或者push操作的时候，由于众所周知的原因，网络速度经常慢到只有几kb/s，所以我们可以通过为Git设置代理的方法加快git的网络速度。">
-<meta property="og:updated_time" content="2019-09-04T15:35:55.326Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="为Git设置代理">
-<meta name="twitter:description" content="在使用git进行clone或者push操作的时候，由于众所周知的原因，网络速度经常慢到只有几kb/s，所以我们可以通过为Git设置代理的方法加快git的网络速度。">
+<meta name="twitter:title" content="Thxit的博客">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -56,7 +52,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>为Git设置代理 | Thxit的博客</title>
+<title>Tag: Python | Thxit的博客</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -66,9 +62,9 @@
         fancybox: true,
         animate: true,
         isHome: false,
-        isPost: true,
+        isPost: false,
         isArchive: false,
-        isTag: false,
+        isTag: true,
         isCategory: false,
         fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
         scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
@@ -264,144 +260,56 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-为Git设置代理" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap">
   
-    <div class="article-meta">
-      <a href="/2016/11/12/为Git设置代理/" class="article-date">
-      <time datetime="2016-11-12T14:51:33.000Z" itemprop="datePublished">2016-11-12</time>
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2016" class="archive-year">2016</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+          <div class="article-meta">
+              <a href="/2016/11/14/pip的代理设置/" class="archive-article-date">
+      <time datetime="2016-11-14T09:35:34.000Z" itemprop="datePublished">11-14</time>
 </a>
 
 
-    </div>
+        </div>
+         
   
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      为Git设置代理
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2016/11/14/pip的代理设置/">pip的代理设置</a>
     </h1>
   
 
-      </header>
-      
-      <div class="article-info article-info-post">
-        
-
-        
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li></ul>
-    </div>
-
-        <div class="clearfix"></div>
-      </div>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
+        <div class="article-info info-on-archive">
           
-        <p>在使用git进行clone或者push操作的时候，由于众所周知的原因，网络速度经常慢到只有几kb/s，所以我们可以通过为Git设置代理的方法加快git的网络速度。<br><a id="more"></a></p>
-<h2 id="HTTP协议"><a href="#HTTP协议" class="headerlink" title="HTTP协议"></a>HTTP协议</h2><p>Git 使用 libcurl 提供 http 支持，所以直接在 git 配置文件中加入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[http]</div><div class="line">proxy = socks5://127.0.0.1:1080</div></pre></td></tr></table></figure></p>
-<p>或者使用git的配置http.config:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git config http.config socks5://127.0.0.1:1080</div></pre></td></tr></table></figure></p>
-<p>也可以使用环境变量<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ export HTTPS_PROXY=socks5://127.0.0.1:1080</div></pre></td></tr></table></figure></p>
-<p>但是环境变量只能全局使用，虽然也可以根据不同的仓库进行配置，然而需要我们在每次使用的时候加上env<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ env HTTPS_PROXY=socks5://127.0.0.1:1080 git pull</div></pre></td></tr></table></figure></p>
-<h2 id="SSH协议"><a href="#SSH协议" class="headerlink" title="SSH协议"></a>SSH协议</h2><p>建立<code>/path/to/soks5proxyssh</code>文件<br>shell运行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#!/bin/sh</div><div class="line">ssh -o ProxyCommand=&quot;/path/to/socks5proxywrapper %h %p&quot; &quot;$@&quot;</div></pre></td></tr></table></figure></p>
-<p>配置git使用该wrapper<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">export GIT_SSH=&quot;/path/to/socks5proxyssh“</div></pre></td></tr></table></figure></p>
-<p>修改ssh配置文件.ssh/config<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Host github.com</div><div class="line">        ProxyCommand nc -X 5 127.0.0.1:1080 %h %p</div></pre></td></tr></table></figure></p>
-<p>ssh配置参考man ssh_comfig<br>nc命令参考nc<br>去掉Host整行的话，SSH代理就成为全局模式。</p>
-<h2 id="GIT-协议"><a href="#GIT-协议" class="headerlink" title="GIT 协议"></a>GIT 协议</h2><p>建立 /path/to/socks5proxywrapper 文件，使用 [connect]:(<a href="https://bitbucket.org/gotoh/connect" target="_blank" rel="external">https://bitbucket.org/gotoh/connect</a>) 工具进行代理的转换，各发行版一般打包为 proxy-connect 或者 connect-proxy。<br>编译并且更改权限<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ gcc -o connect connect.c</div><div class="line">$ sudo chmod +x connect</div><div class="line">$ mv connect ~/bin/connect</div></pre></td></tr></table></figure></p>
-<p>shell下运行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#!/bin/sh</div><div class="line">connect -S 127.0.0.1:7070 &quot;$@&quot;</div></pre></td></tr></table></figure></p>
-<p>配置 ~/.gitconfig<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[core]</div><div class="line">        gitproxy = /path/to/socks5proxywrapper</div></pre></td></tr></table></figure></p>
-<p>或者直接设置环境变量<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">export GIT_PROXY_COMMAND=&quot;/path/to/socks5proxywrapper&quot;</div></pre></td></tr></table></figure></p>
 
-      
+          
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
     </div>
-    
+
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
-  
-    
-
-
-    <nav id="article-nav">
-        
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2016/11/13/vim配置/">
-                    Vim配置
-                </a>
-            </div>
-        
-        
-            <div id="article-nav-older" class="article-nav-title">
-                <a href="/2016/06/21/灯下漫笔/">
-                    灯下漫笔
-                </a>
-            </div>
-        
-    </nav>
-
-  
 </article>
-
-    <div id="toc" class="toc-article">
-        <strong class="toc-title">文章目录</strong>
-        
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP协议"><span class="toc-number">1.</span> <span class="toc-text">HTTP协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SSH协议"><span class="toc-number">2.</span> <span class="toc-text">SSH协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GIT-协议"><span class="toc-number">3.</span> <span class="toc-text">GIT 协议</span></a></li></ol>
-        
-    </div>
-    <style>
-        .left-col .switch-btn,
-        .left-col .switch-area {
-            display: none;
-        }
-        .toc-level-6 i,
-        .toc-level-6 ol {
-            display: none !important;
-        }
-    </style>
-
-    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
-
-    <script>
-        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
-    </script>
-
-
-
-
+  
+  
+    </div></section>
+  
 
     
 
-
-
-
-    <div class="scroll" id="post-nav-button">
-        
-            <a href="/2016/11/13/vim配置/" title="上一篇: Vim配置">
-                <i class="fa fa-angle-left"></i>
-            </a>
-        
-
-        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
-
-        
-            <a href="/2016/06/21/灯下漫笔/" title="下一篇: 灯下漫笔">
-                <i class="fa fa-angle-right"></i>
-            </a>
-        
-    </div>
-
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/09/07/埃隆马斯克的方法谈/">埃隆马斯克的方法谈</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/14/pip的代理设置/">pip的代理设置</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/13/vim配置/">Vim配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/12/为Git设置代理/">为Git设置代理</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/21/灯下漫笔/">灯下漫笔</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/20/Git推送时避免重复输入密码/">Git推送时避免重复输入密码</a></li></ul>
-
-
-
-
-    <script>
-        
-    </script>
 </div>
       <footer id="footer">
     <div class="outer">

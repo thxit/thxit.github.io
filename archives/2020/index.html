@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Git," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -79,16 +79,12 @@
 
 
 
-<meta name="description" content="当我们选用https的方式连接git服务器时，每推送一次就要输入一次密码，非常的麻烦。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Git推送时避免重复输入密码">
-<meta property="og:url" content="http://yoursite.com/2016/06/20/Git推送时避免重复输入密码/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="云深不知处">
+<meta property="og:url" content="http://yoursite.com/archives/2020/index.html">
 <meta property="og:site_name" content="云深不知处">
-<meta property="og:description" content="当我们选用https的方式连接git服务器时，每推送一次就要输入一次密码，非常的麻烦。">
-<meta property="og:updated_time" content="2019-12-10T17:27:53.636Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Git推送时避免重复输入密码">
-<meta name="twitter:description" content="当我们选用https的方式连接git服务器时，每推送一次就要输入一次密码，非常的麻烦。">
+<meta name="twitter:title" content="云深不知处">
 
 
 
@@ -118,13 +114,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/06/20/Git推送时避免重复输入密码/"/>
+  <link rel="canonical" href="http://yoursite.com/archives/2020/"/>
 
 
 
 
 
-  <title>Git推送时避免重复输入密码 | 云深不知处</title>
+  <title>归档 | 云深不知处</title>
   
 
 
@@ -143,7 +139,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-left page-archive">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -227,148 +223,74 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
+  
+  
+  
+  <div class="post-block archive">
+    <div id="posts" class="posts-collapse">
+      <span class="archive-move-on"></span>
 
-  
+      <span class="archive-page-counter">
+        
+        
+        
+          
+        
+        嗯..! 目前共计 14 篇日志。 继续努力。
+      </span>
 
-  
-  
-  
+      
+
+        
+        
+        
+
+        
+          
+          <div class="collection-title">
+            <h1 class="archive-year" id="archive-year-2020">2020</h1>
+          </div>
+        
+        
+
+        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/06/20/Git推送时避免重复输入密码/">
+    <header class="post-header">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Thxit">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="云深不知处">
-    </span>
-
-    
-      <header class="post-header">
-
+      <h2 class="post-title">
         
-        
-          <h1 class="post-title" itemprop="name headline">Git推送时避免重复输入密码</h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
+            <a class="post-title-link" href="/2020/05/08/一些想说的/" itemprop="url">
               
-                <span class="post-meta-item-text">发表于</span>
+                <span itemprop="name">一些想说的</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-06-20T11:08:36+08:00">
-                2016-06-20
-              </time>
-            
+            </a>
+        
+      </h2>
 
-            
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2020-05-08T00:30:03+08:00"
+              content="2020-05-08" >
+          05-08
+        </time>
+      </div>
 
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <p>当我们选用https的方式连接git服务器时，每推送一次就要输入一次密码，非常的麻烦。<br><a id="more"></a><br>如果不想用ssh连接，我们可以输入以下的命令避免重复输入密码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git config --global user.name &quot;your name &quot;</div><div class="line">git config --global user.email youremail@exampal.com</div><div class="line">git config --global credential.helper store</div></pre></td></tr></table></figure></p>
-<p>该命令存储密码缓存，执行后还需要再输一次。</p>
-
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Git/" rel="tag"># Git</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/06/21/灯下漫笔/" rel="prev" title="灯下漫笔">
-                灯下漫笔 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
+    </header>
   </article>
 
 
 
-    <div class="post-spread">
       
+
     </div>
   </div>
+  
+  
+  
+
+  
+
 
 
           </div>
@@ -376,10 +298,6 @@
 
 
           
-
-  
-
-
 
         </div>
         
@@ -596,10 +514,6 @@
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
 
   
 

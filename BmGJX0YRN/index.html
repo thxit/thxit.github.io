@@ -1,0 +1,385 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>Matplotlib绘图学习笔记 | 丁酒thxit的小酒坊</title>
+
+<link rel="shortcut icon" href="https://thxit.github.io/favicon.ico?v=1720517683108">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://thxit.github.io/styles/main.css">
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"> -->
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/languages//dart.min.js"></script>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script> -->
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+    
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" href="/">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            丁酒thxit的小酒坊
+        </div>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" id="changeNavbar">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+            <div class="nav-item">
+                
+                <a href="/" class="menu gt-a-link">
+                    首页
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/archives" class="menu gt-a-link">
+                    归档
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/tags" class="menu gt-a-link">
+                    标签
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/post/about" class="menu gt-a-link">
+                    关于
+                </a>
+                
+            </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1720517683108"
+                action="/search/">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+<script>
+    /* 移动端导航栏展开/收起切换 */
+    document.getElementById('changeNavbar').onclick = () => {
+        var element = document.getElementById('navbarSupportedContent');
+        if (element.style.display === 'none' || element.style.display === '') {
+            element.style.display = 'block';
+        } else {
+            element.style.display = 'none';
+        }
+    }
+</script>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Matplotlib绘图学习笔记
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2023-05-15 ·
+                    </time>
+                    
+                        <a href="https://thxit.github.io/tag/hcIzwf5pv/" class="post-tags">
+                            # 量化
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p><ul class="markdownIt-TOC">
+<li><a href="#%E5%89%8D%E8%A8%80">前言</a></li>
+<li><a href="#%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BB%98%E5%9B%BE">函数式绘图</a></li>
+<li><a href="#%E5%AF%B9%E8%B1%A1%E5%BC%8F%E7%BB%98%E5%9B%BE%E6%96%B9%E5%BC%8F">对象式绘图方式</a></li>
+<li><a href="#%E4%B9%B1%E7%A0%81%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95">乱码的解决方法</a></li>
+</ul>
+</p>
+<h1 id="前言">前言</h1>
+<p>量化交易系统中，我们需要直观的查看数据和评估策略的运行情况，matplotlib则是专业用于绘图的第三方库。<br>
+matplotlib主要有两种绘图风格，一种是延续自Matlab的函数式绘图，一种是 Pythton的对象式绘图。</p>
+<h1 id="函数式绘图">函数式绘图</h1>
+<p>Matlab中调用函数命令即可轻松绘制图形。Matplotlib受到Matlab的启发而构建，因此也延续了其函数式的绘图方式，设计了一套函数形式的绘图api，调用api即可绘制高质量图形。我们用一个例子来学习。</p>
+<p>A股市场经常呈现周期性的涨跌，我们可以使用正弦函数产生绘图的数据，来模拟市场走势。我们可以指定numpy中linspace()函数的开始值、终值和步长来创建一维等差数组，并将该数组作为numpy中sin()函数的x轴数据以生成对应的正弦值，如下：</p>
+<pre><code>import numpy as np
+x = np.linspace(0.5, 7.5, 1000)
+y = np.sin(x)
+</code></pre>
+<p>导入matplotlib库中的pyplot模块，该模块集合了类似matlab的绘图api，如下，<br>
+pandas.DataFrame.plot、pandas.Series.plot、seaborn的画图功能也是基于pyplot模块构建而成的。</p>
+<pre><code>import matplotlib.pyplot as plt
+</code></pre>
+<p>matplotlib中figure()函数创建图表大小并设置大小，如下所示。figsize参数指定图像的长和宽。</p>
+<pre><code>plt.figure(figsize=(12,8))
+</code></pre>
+<p>matplotlib中的plot()函数用于绘制线条图形，以展现数据的变化趋势。其中linestyle参数设定线条类型，color参数指定线条颜色，linewidth参数设定线条的宽度，label参数设置线条的标签。如下：</p>
+<pre><code># lw: line width,用于设置线条宽度
+# '--g': 结合linestyle和color，线条使用虚线，颜色使用绿色
+# label: 设置线条标签为'sin(x)'
+plt.plot(x, y, '--g', lw =2, label='sin(x)')
+</code></pre>
+<p>matplotlib中xlim(min,max)函数和ylim(min,max)函数分别设置x坐标轴和y坐标轴的数值显示刻度范围，</p>
+<pre><code># 调整坐标轴范围
+plt.xlim(0, 10)
+plt.ylim(-1.5, 1.5)
+</code></pre>
+<p>matplotlib中的xlabel()函数和ylabel()函数添加x轴和y轴的显示标签，如下，</p>
+<pre><code># 设置坐标轴标签
+plt.xlabel('X axis')
+plt.ylabel('Y axis')
+</code></pre>
+<p>matplotlib中的xticks(location,labels)函数和yticks(location,labels)函数分别设定x轴和y轴的坐标标签。location为浮点数或整数组成的列表，表示坐标轴上坐标的位置。<br>
+labels是location等长的字符串列表，表示坐标的显示标签。rotation参数可旋转调节坐标标签，当坐标密集时可避免标签重叠。如下：</p>
+<pre><code># 设置轴标签
+plt.xticks(np.arange(0, 10, 2), ['2022-03-06', '2022-04-06', '2022-04-06', '2022-04-06', '2022-04-06'], rotation=45)
+plt.yticks(np.arange(-1, 1.5, 1), [u&quot;最小值&quot;, u'零值', u'最大值'])
+</code></pre>
+<p>matplotlib中的grid()函数用于设置图形中的网格线。其中linestyle用于设置网格的线条类型，color用于设置网格的线条颜色。如下</p>
+<pre><code># 设置网格线
+plt.grid(True, ls=':', color='r', alpha=0.5)
+</code></pre>
+<p>title()函数设置图形的标题，</p>
+<pre><code># 设置标题
+plt.title(u&quot;Functional Programming&quot;)
+</code></pre>
+<p>matplotlib中的legend()函数增加图例显示，当多条曲线显示在同一张图时，便于识别不同的曲线，使用loc参数可以控制图例的放置位置，upper left(左上角)、upper center(中上)、upper right(右上角)、lower left(左下角)、lower center(中下)、lower right（右下）。如下，</p>
+<pre><code># 添加图例
+plt.legend(loc='upper right')
+</code></pre>
+<p>matplotlib中的annotate()函数可在图形中添加指向性注释文本，我们不妨在最低点(π*3/2, -1)位置用一个红色箭头指向一个买信号，在最高点位置使用一个绿色箭头指向一个卖信号，以此来熟练这个函数的使用。在使用annotate()函数时，要考虑两个坐标点，分别为xy(x,y)指示点坐标，即注释 箭头指向的点坐标，以及xytext(x,y)插入注释文本的点坐标。另外arrowprops参数是以字典格式设置箭头属性(arrow propertiose)。如下，</p>
+<pre><code># 添加sin(x)的最高点注释
+plt.annotate('max sell',
+             xy=(np.pi/2, 1),  # 箭头指向点的坐标
+             xytext=(np.pi/2, 1.3),  # 注释文本左端的坐标
+             weight='regular',  # 注释文本的字体粗细风格
+             color='g',  # 注释文本的颜色
+             fontsize=15,  # 注释文本的字体大小
+             arrowprops={
+                 'arrowstyle': '-&gt;',  # 箭头类型
+                 'connectionstyle': 'arc3',  # 连接类型
+                 'color': 'g'  # 箭头颜色
+             })
+plt.annotate('min buy',
+             xy=(np.pi*3/2, -1),
+             xytext=(np.pi*3/2, -1.3),
+             weight='regular',
+             color='r',
+             fontsize=15,
+             arrowprops={
+                 'arrowstyle': '-&gt;',
+                 'connectionstyle': 'arc3',
+                 'color': 'r'
+             })
+</code></pre>
+<p>显示图形，</p>
+<pre><code>plt.show()
+</code></pre>
+<p><img src="https://thxit.github.io/post-images/1684162415294.png" alt="" loading="lazy"><br>
+完整代码如下：</p>
+<pre><code>import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.linspace(0.5, 7.5, 1000)
+y = np.sin(x)
+
+plt.figure(figsize=(12, 8))  # 创建图形并且设置大小
+# 创建函数sin(x)图
+plt.plot(x, y, '--g', lw=2, label='sin(x)')
+# 调整坐标轴范围
+plt.xlim(0, 10)
+plt.ylim(-1.5, 1.5)
+# 设置坐标轴标签
+plt.xlabel('X axis')
+plt.ylabel('Y axis')
+# 设置轴标签
+plt.xticks(np.arange(0, 10, 2), ['2022-03-06', '2022-04-06', '2022-04-06', '2022-04-06', '2022-04-06'], rotation=45)
+plt.yticks(np.arange(-1, 1.5, 1), [u&quot;最小值&quot;, u'零值', u'最大值'])
+# 设置网格线
+plt.grid(True, ls=':', color='r', alpha=0.5)
+# 设置标题
+plt.title(u&quot;Functional Programming&quot;)
+# 添加图例
+plt.legend(loc='upper right')
+# 添加sin(x)的最高点注释
+plt.annotate('max sell',
+             xy=(np.pi/2, 1),  # 箭头指向点的坐标
+             xytext=(np.pi/2, 1.3),  # 注释文本左端的坐标
+             weight='regular',  # 注释文本的字体粗细风格
+             color='g',  # 注释文本的颜色
+             fontsize=15,  # 注释文本的字体大小
+             arrowprops={
+                 'arrowstyle': '-&gt;',  # 箭头类型
+                 'connectionstyle': 'arc3',  # 连接类型
+                 'color': 'g'  # 箭头颜色
+             })
+plt.annotate('min buy',
+             xy=(np.pi*3/2, -1),
+             xytext=(np.pi*3/2, -1.3),
+             weight='regular',
+             color='r',
+             fontsize=15,
+             arrowprops={
+                 'arrowstyle': '-&gt;',
+                 'connectionstyle': 'arc3',
+                 'color': 'r'
+             })
+plt.show()
+</code></pre>
+<h1 id="对象式绘图方式">对象式绘图方式</h1>
+<p>matplotlib库是由一系列的有组织有从属关系的对象构成的，本质上还是以构建对象方式来绘制图像，但是为了让用户方便，将构造的过程封装在函数中，形成了函数式编程方式。由于函数式绘图在原有对象上增加了一层调用接口，不仅降低了效率，而且掩盖了原有的从属关系，无法体现出对象体系中的细节功能。</p>
+<p>我们先了解一下对象从属关系，在matplotlib中，整个图像为一个Figure对象，所有元素依附于Figure对象中。在Figure对象中可以包含一个或者多个Axes对象，每个Axes对象各自拥有坐标系统的绘图区域，包含各自的Title、Axis、Label、Tick、Tick Label等对象元素。</p>
+<p>对象式绘图与函数式绘图的最大区别在于pyplot模块的figure()函数创建了名为fig的Figure对象，而后在Figure对象中创建一个Axes对象，Axes对象即为一个绘图区域，如下：</p>
+<pre><code>fig = plt.figure(figsize=(12,8))
+ax = fig.add_subplot(111)
+</code></pre>
+<p>接下来在Axes对象中增加坐标轴标签label对象、tick对象、ticklabel对象和标题title对象，以及对坐标轴的取值范围xlim和ylim进行设定等等，与函数式绘图方式大致相同。</p>
+<pre><code>ax.set_xlabel('X axis', fontsize=15)
+ax.set_ylabel('Y axis', fontsize=15)
+</code></pre>
+<p>效果如下：<br>
+<img src="https://thxit.github.io/post-images/1684413506103.png" alt="" loading="lazy"><br>
+完整代码：</p>
+<pre><code>import numpy as np
+import matplotlib.pyplot as plt
+
+# 生成数据
+x = np.linspace(0.5, 7.5, 1000)
+y = np.sin(x)
+# pyplot模块中的figure()函数创建名为fig的Figure对象
+fig = plt.figure(figsize=(12, 8))
+# 在Figure对象中创建一个Axes对象，每个Axes对象即为一个绘图区域
+ax = fig.add_subplot(111)
+# sin(x)图
+ax.plot(x, y, '--g', lw=2, label='sin(x)')
+# 调整坐标轴范围
+ax.set_xlim(0, 10)
+ax.set_ylim(-1.5, 1.5)
+# 设置坐标轴标签
+ax.set_xticks(np.arange(0, 10, 2))
+ax.set_yticks(np.arange(-1, 1.5, 1))
+ax.set_xticklabels(['2022-07-01', '2022-08-02', '2022-09-02', '2022-10-02', '2022-11-02',],
+                   rotation=45, fontsize=45)
+ax.set_yticklabels([u'最小值', u'零值', u'最大值'], fontsize=15)
+
+# 设置轴标签
+ax.set_xlabel('X axis', fontsize=15)
+ax.set_ylabel('Y axis', fontsize=15)
+# 设置网格线
+ax.grid(True, ls=':', color='r', alpha=0.5)
+# 设置标题
+ax.set_title(u&quot;Functional Programming&quot;, fontsize=25)
+# 添加图例
+ax.legend(loc='upper right', fontsize=15)
+# 添加sin(x)的最高点注释
+ax.annotate('max sell',
+            xy=(np.pi/2, 1),
+            xytext=(np.pi/2, 1.3),
+            weight='regular',
+            color='g',
+            fontsize=15,
+            arrowprops={
+                'arrowstyle': '-&gt;',
+                'connectionstyle': 'arc3',
+                'color': 'g'
+            })
+
+ax.annotate('min buy',
+            xy=(np.pi*3/2, -1),
+            xytext=(np.pi*3/2, -1.3),
+            weight='regular',
+            color='r',
+            fontsize=15,
+            arrowprops={
+                'arrowstyle': '-&gt;',
+                'connectionstyle': 'arc3',
+                'color': 'r'
+            })
+plt.show()
+</code></pre>
+<h1 id="乱码的解决方法">乱码的解决方法</h1>
+<p>在图片显示的过程中，发现标签文字是一堆乱码，搜索了一下，解决方案是</p>
+<pre><code>from pylab import mpl
+mpl.rcParams['font.sans-serif'] = ['Heiti TC'] # 显示黑体中文
+mpl.rcParams['axes.unicode_minus'] = False
+</code></pre>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://thxit.github.io/Lt9YwNuIt/" class="post-title gt-a-link">
+                    Pandas构建DataFrame股票数据
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">温故而知新</div>
+    <div class="social-container">
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme <a href="https://github.com/imhanjie/gridea-theme-pure" target="_blank">Pure</a>, Powered by <a
+                href="https://gridea.dev" target="_blank">Gridea</a> | <a href="https://thxit.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+</div>
+
+<script>
+  hljs.highlightAll()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

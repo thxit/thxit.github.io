@@ -1,0 +1,278 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>Numpy模拟随机漫步理论 | 丁酒thxit的小酒坊</title>
+
+<link rel="shortcut icon" href="https://thxit.github.io/favicon.ico?v=1720517683108">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://thxit.github.io/styles/main.css">
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"> -->
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/languages//dart.min.js"></script>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script> -->
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+    
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" href="/">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            丁酒thxit的小酒坊
+        </div>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" id="changeNavbar">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+            <div class="nav-item">
+                
+                <a href="/" class="menu gt-a-link">
+                    首页
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/archives" class="menu gt-a-link">
+                    归档
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/tags" class="menu gt-a-link">
+                    标签
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/post/about" class="menu gt-a-link">
+                    关于
+                </a>
+                
+            </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1720517683108"
+                action="/search/">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+<script>
+    /* 移动端导航栏展开/收起切换 */
+    document.getElementById('changeNavbar').onclick = () => {
+        var element = document.getElementById('navbarSupportedContent');
+        if (element.style.display === 'none' || element.style.display === '') {
+            element.style.display = 'block';
+        } else {
+            element.style.display = 'none';
+        }
+    }
+</script>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Numpy模拟随机漫步理论
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2023-05-11 ·
+                    </time>
+                    
+                        <a href="https://thxit.github.io/tag/hcIzwf5pv/" class="post-tags">
+                            # 量化
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <h1 id="什么是numpy和随机漫步理论">什么是Numpy和随机漫步理论</h1>
+<p>NumPy是Python用于科学计算的基础包。它的主要功能是提供了多维数组对象，多种衍生对象和一个用于数组快速运算的混合程序，包含了数学、逻辑、排序、选择、I/O、离散傅立叶变换、基础线性代数、基础统计操作、随机模拟等等。<br>
+随机漫步理论则是投资学上的一个假说，认为股票市场的价格会形成随机漫步模式。其是无法被预测的。</p>
+<h1 id="随机漫步下的股价">随机漫步下的股价</h1>
+<p>随机漫步理论认为股票的日常价格变动从根本上无法预知，类似于微观粒子的随机运动。但是我们可以从统计学的角度出发，将股票的不可预知性转变为可预知。从统计学的角度，爱德华索普将股票的价格走势比做一名喝醉酒的醉汉在一个路灯下漫无目的的行走，每一步可能向前也可能向后退，由于醉汉的每一步都是随机的，我们无法预测，但是这名醉汉最终的位置概率是呈现正态分布的，随着出现的位置范围不断变大，距离起始点越远的位置概率越小。<img src="https://thxit.github.io/post-images/1683809725985.png" alt="" loading="lazy"><br>
+同样，我们无法预测股票价格如何变化，但是我们可以从呈现的正态分布中知道股票变化的概率分布，因此股价的波动性是可以量化的。这也是日后量化金融发展的理论基础。</p>
+<h1 id="正态分布">正态分布</h1>
+<p>正态分布描述的是某件事出现不同结果的概率分布，而描述一个正态分布曲线，我们只需要两个参数，一个是决定曲线峰值的参数μ，一个是决定曲线陡峭程度的参数σ。当μ=0，σ=1时的正态分布是标准正态分布。</p>
+<h1 id="随机序列的生成">随机序列的生成</h1>
+<p>我们选取正态随机漫步理论来生成股价以支撑我们后续的学习。Python内置的random模块和第三方库NumPy模块都提供了生成随机漫步序列的方法。</p>
+<h2 id="内置random模块的使用">内置random模块的使用</h2>
+<p>我们使用random模块的normalvariate(mu,sigma)方法来生成符合正态分布的随机数，其中mu对应公式的期望值μ，标准差σ，当μ=0，σ=1时为标准正态分布。</p>
+<pre><code>import random
+print(&quot;normalvariate: &quot;,random.normalvariate(0,1))
+normalvariate:  0.6753952361310515
+</code></pre>
+<p>然而这样的方法只能生成一个随机数，所以我们采用循环的方法产生一组随机数列。</p>
+<pre><code>a = []
+for _ in range(1000):
+    a.append(random.normalvariate(0,1))
+</code></pre>
+<p>然后使用matplotlib.pyplot.hist()方法将随机数列绘制成直方图</p>
+<pre><code>import matplotlib.pyplot as plt
+plt.hist(a,bins=30)
+plt.show()
+</code></pre>
+<p><img src="https://thxit.github.io/post-images/1683812170089.png" alt="" loading="lazy"><br>
+从图中可知直方图呈现两边低，中间高，左右对称的钟形，符合正态分布的标准。</p>
+<h2 id="numpy对于随机数生成的模块运用">NumPy对于随机数生成的模块运用</h2>
+<p>NumPy是以N维数组对象ndarray存储数据的，因此np.random.normal()的返回值类型就是numpy.ndarray。</p>
+<pre><code>print(type(np.random.normal(loc=0.0, scale=1.0,size=1000)))
+
+</code></pre>
+<p>相比通过random.normalvariate()方法生成一个等价的Python列表，使用np.random.normal()方法生成1000000个规模的随机数组显得更有效率和优势。<br>
+我们可以使用timeit计时模块测量两种方法的代码运行时间。将两种方法封装成函数，以函数形式分别测量两种方法的代码运行时间。</p>
+<pre><code>from timeit import timeit
+import numpy as np
+import random
+
+def list_test():
+    walk = []
+    for _ in range(1000000):
+        walk.append(random.normalvariate(0,1))
+
+def ndarray_test():
+    np.random.normal(loc=0.0,scale=1.0,size=1000000)
+
+t1 = timeit('list_test()','from __main__ import list_test',number=1)
+t2 = timeit('ndarray_test()','from __main__ import ndarray_test',number=1)
+
+print(&quot;list:{}&quot;.format(t1))  #list:0.515951042
+print(&quot;ndarray:{}&quot;.format(t2))  #ndarray:0.01707875000000003
+</code></pre>
+<h3 id="矢量运算">矢量运算</h3>
+<p>矢量计算是将函数和运算符应用到数组并且进行计算时，很多函数和运算符都会对数组内元素进行自动计算。这样我们仅仅用简洁的表达式就可以代替Python的for循环，我们使用NumPy的random.normalvariate()生成一个平均收盘价为10元，振幅1元（标准差），样本数量为1000的正态随机分布数组。</p>
+<pre><code>stock_data = np.random.normal(loc=10.0,scale=1.0,size=1000)
+stock_data = np.arround(stock_data, 2)  #保留2位小数
+print(&quot;stock_data:\n {}&quot;.format(stock_data))
+</code></pre>
+<p>尝试一下更复杂的操作，如计算股价的涨跌幅，涨跌幅的计算公式为：（今日收盘价-昨日收盘价）/昨日收盘价*100%。np.roll()为循环右移，此处将今日收盘价数组循环右移一位得到了昨日收盘价数组，那么昨日收盘价数组的第一个值就为无效值，对应计算得到的pct_change的第一个值需要设置为无效值np.nan</p>
+<pre><code>stock_data = np.random.normal(loc=10.0,scale=1.0,size=1000)
+pct_change = np.around((stock_data-np.roll(stock_data,1))/np.roll(stock_data,1),2)
+pct_change[0] = np.nan
+print(&quot;pct_change:\n {}&quot;.format(pct_change))
+pct_change:
+ [  nan -0.12 -0.   -0.03  0.22 -0.14  0.28 -0.2  -0.01  0.02 -0.05  0.05
+  0.08 -0.04  0.07 -0.07  0.05  0.03 -0.   -0.06 -0.1   0.08  0.16 -0.21
+  0.24 -0.19 -0.11  0.41 -0.2  -0.1   0.22 -0.08  0.16 -0.14 -0.02  0.15
+
+</code></pre>
+<h2 id="可视化随机漫步轨迹">可视化随机漫步轨迹</h2>
+<p>之前我们模拟过醉汉的移动距离的最终位置的落点分布，现在我们为了表现他的行动轨迹，将醉汉的移动简化为一维的移动，规定他只能在一条直线上随机前进或者后退，我们先使用numpy.random.randint(low,high=None,dtype='l')函数产生随机数。范围区间是最小值low到最大值high，包含low，不包含high，dtypt是数据类型，size是数组维度大小，默认数据类型是np.int，high未填写时，默认生成的随机数是【0，low】。<br>
+游走轨迹代码生成如下：</p>
+<pre><code>draw = np.random.randint(0,2,size=nsteps)
+steps = np.where(draws &gt; 0,1,-1)
+walk = steps.cumsum()
+</code></pre>
+<p>使用matplotlib绘图后是这样的：<br>
+<img src="https://thxit.github.io/post-images/1684561708807.png" alt="" loading="lazy"><br>
+由于醉汉的每一次都是随机的，我们并不能从如此多的可能性中预测他最终会选择哪一条，但是我们可以以概率来判断他未来的可行方向和趋势。我们合并了1000次的漫步结果，并且将计算过程封装为random_walk(),模拟醉汉从0轴开始1000次随机游走2000步的模拟轨迹:</p>
+<pre><code>import numpy as np
+import matplotlib.pyplot as plt
+from pylab import mpl
+
+mpl.rcParams['font.sans-serif'] = ['Heiti TC']
+mpl.rcParams['axes.unicode_minus'] = False
+
+
+def random_walk(nsteps = 1000):
+    draws = np.random.randint(0, 2, size=nsteps)
+    print(f'random walk direction is {draws}')
+    steps = np.where(draws &gt; 0, 1, -1)  # 将0转换成1
+    walk = steps.cumsum() # 累加方式记录轨迹
+    return walk
+
+
+def simplot_random_work():
+    _ = [plt.plot(np.arange(2000), random_walk(nsteps=2000), c='b', alpha=0.05) for _ in np.arange(0, 1000)]
+    plt.xlabel('游走步数')
+    plt.ylabel('分布轨迹')
+    plt.title(u'随机漫步')
+    plt.show()
+
+simplot_random_work()
+</code></pre>
+<p>结果：<br>
+<img src="https://thxit.github.io/post-images/1684562181754.png" alt="" loading="lazy"></p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://thxit.github.io/liang-hua-tou-zi/" class="post-title gt-a-link">
+                    量化投资
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">温故而知新</div>
+    <div class="social-container">
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme <a href="https://github.com/imhanjie/gridea-theme-pure" target="_blank">Pure</a>, Powered by <a
+                href="https://gridea.dev" target="_blank">Gridea</a> | <a href="https://thxit.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+</div>
+
+<script>
+  hljs.highlightAll()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

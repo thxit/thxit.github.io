@@ -1,0 +1,342 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>量化交易数据的处理和分析学习 | 丁酒thxit的小酒坊</title>
+
+<link rel="shortcut icon" href="https://thxit.github.io/favicon.ico?v=1720517683108">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://thxit.github.io/styles/main.css">
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"> -->
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/languages//dart.min.js"></script>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script> -->
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+    
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" href="/">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            丁酒thxit的小酒坊
+        </div>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" id="changeNavbar">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+            <div class="nav-item">
+                
+                <a href="/" class="menu gt-a-link">
+                    首页
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/archives" class="menu gt-a-link">
+                    归档
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/tags" class="menu gt-a-link">
+                    标签
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/post/about" class="menu gt-a-link">
+                    关于
+                </a>
+                
+            </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1720517683108"
+                action="/search/">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+<script>
+    /* 移动端导航栏展开/收起切换 */
+    document.getElementById('changeNavbar').onclick = () => {
+        var element = document.getElementById('navbarSupportedContent');
+        if (element.style.display === 'none' || element.style.display === '') {
+            element.style.display = 'block';
+        } else {
+            element.style.display = 'none';
+        }
+    }
+</script>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    量化交易数据的处理和分析学习
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2023-05-27 ·
+                    </time>
+                    
+                </div>
+                <div class="post-content">
+                    <p><ul class="markdownIt-TOC">
+<li><a href="#%E5%89%8D%E8%A8%80">前言</a></li>
+<li><a href="#%E9%81%8D%E5%8E%86dataframe%E6%A0%BC%E5%BC%8F%E8%82%A1%E7%A5%A8%E6%95%B0%E6%8D%AE%E7%9A%84%E6%96%B9%E6%B3%95">遍历DataFrame格式股票数据的方法</a>
+<ul>
+<li><a href="#%E4%BE%8B%E7%A8%8B%E6%95%B0%E6%8D%AE%E7%9A%84%E5%87%86%E5%A4%87">例程数据的准备</a></li>
+<li><a href="#for-in-%E9%81%8D%E5%8E%86%E5%BE%AA%E7%8E%AF%E6%96%B9%E5%BC%8F">for in 遍历循环方式</a></li>
+<li><a href="#iterrows%E7%94%9F%E6%88%90%E5%99%A8%E6%96%B9%E5%BC%8F">iterrows()生成器方式</a>
+<ul>
+<li><a href="#%E8%BF%AD%E4%BB%A3%E5%99%A8%E5%92%8C%E7%94%9F%E6%88%90%E5%99%A8">迭代器和生成器</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8iterrows%E5%AE%9E%E7%8E%B0%E9%81%8D%E5%8E%86">使用iterrows()实现遍历</a></li>
+</ul>
+</li>
+<li><a href="#apply%E5%BE%AA%E7%8E%AF%E6%96%B9%E5%BC%8F">apply()循环方式</a></li>
+</ul>
+</li>
+</ul>
+</p>
+<h1 id="前言">前言</h1>
+<p>在了解了量化交易数据的获取方法之后，我们需要的是对量化数据进行一个数据处理和分析，达到我们想要的结果。</p>
+<h1 id="遍历dataframe格式股票数据的方法">遍历DataFrame格式股票数据的方法</h1>
+<p>股票分析过程中不可避免的要涉及到对dataframe格式数据的遍历查询和处理，最常用的遍历方法是使用for循环执行，当然Numpy的矢量化方法也可以用表达式代替for循环遍历数据。除此之外，还有别的方法能够遍历dataframe格式数据。现在我们通过实现单均线突破策略为例子，学习这几种方法。</p>
+<h2 id="例程数据的准备">例程数据的准备</h2>
+<p>单均线突破的交易策略是，若昨日收盘价高出过去20日平均价则今天开盘买入股票，若昨天收盘价格低于过去20日平均价，则今天开盘卖出股票，因此需要遍历查询每个交易日收盘价与过去20日平均价的差值，并且标记查询结果以提供交易操作。</p>
+<p>首先我们需要获取上证指数交易数据。采用baostock获取股票数据</p>
+<pre><code>import baostock as bs
+lg = bs.login()
+print('login respond error_code:' + lg.error_code)
+print('login respond error_msg:' + lg.error_msg)
+
+df = bs.query_history_k_data('sh.601398', 'date,code,high,low,open,close,volume',
+                             start_date='2018-01-01', end_date='2020-12-31', frequency='d', adjustflag='3').get_data() # get_data将数据转换为dataframe格式
+print(df.head(10))
+</code></pre>
+<p>所得结果如下：</p>
+<pre><code>login success!
+login respond error_code:0
+login respond error_msg:success
+         date       code    high     low    open   close     volume
+0  2018-01-02  sh.601398  6.3900  6.1100  6.1900  6.1800  537466208
+1  2018-01-03  sh.601398  6.3200  6.1200  6.1800  6.1600  349361120
+2  2018-01-04  sh.601398  6.1800  6.0600  6.1800  6.0700  435136528
+3  2018-01-05  sh.601398  6.1100  6.0600  6.0900  6.0800  281784272
+4  2018-01-08  sh.601398  6.1000  6.0400  6.0900  6.0700  218487604
+5  2018-01-09  sh.601398  6.1100  6.0400  6.0700  6.0900  167185706
+6  2018-01-10  sh.601398  6.1900  6.0600  6.0800  6.1600  248738958
+7  2018-01-11  sh.601398  6.2400  6.1400  6.1800  6.2100  197047306
+8  2018-01-12  sh.601398  6.3000  6.2000  6.2000  6.2500  218851799
+9  2018-01-15  sh.601398  6.4800  6.2400  6.2400  6.4300  530209504
+</code></pre>
+<p>我么随后使用df.rolling().mean()方法计算得到M20移动平均线，该方法只需提供收盘价和移动平均时间窗口大小即可，</p>
+<pre><code>df['Ma20'] = df.Close.rolling(window=20).mean()    # 增加20日移动均线
+print(df.head())    # 查看前五行
+</code></pre>
+<p>结果如下：</p>
+<pre><code>login success!
+login respond error_code:0
+login respond error_msg:success
+         Date       Code    High     Low    Open   Close     Volume  Ma20
+0  2018-01-02  sh.601398  6.3900  6.1100  6.1900  6.1800  537466208   NaN
+1  2018-01-03  sh.601398  6.3200  6.1200  6.1800  6.1600  349361120   NaN
+2  2018-01-04  sh.601398  6.1800  6.0600  6.1800  6.0700  435136528   NaN
+3  2018-01-05  sh.601398  6.1100  6.0600  6.0900  6.0800  281784272   NaN
+4  2018-01-08  sh.601398  6.1000  6.0400  6.0900  6.0700  218487604   NaN
+</code></pre>
+<p>查看末端5行，<code>print(df.tail())</code>，结果如下，</p>
+<pre><code>login success!
+login respond error_code:0
+login respond error_msg:success
+           Date       Code    High     Low    Open   Close     Volume    Ma20
+725  2020-12-25  sh.601398  4.9700  4.9500  4.9600  4.9700  153283872  5.1200
+726  2020-12-28  sh.601398  4.9700  4.9300  4.9600  4.9700  231926812  5.1025
+727  2020-12-29  sh.601398  4.9800  4.9500  4.9700  4.9800  254202319  5.0780
+728  2020-12-30  sh.601398  4.9800  4.9400  4.9700  4.9600  254078489  5.0535
+729  2020-12-31  sh.601398  5.0100  4.9500  4.9500  4.9900  310003984  5.0340
+</code></pre>
+<p>这里我们看到前20日的移动均线是没有显示结果的，事实上，我们只有在第20个交易日时才能得到第1个Ma20移动平均线数值，我们需要处理前19个交易日中Ma20列的NaN值。可以使用DataFrame.dropna()方法删除NaN值，参数axis=0表示删除包含缺失值行，axis=1表示删除包含缺失值列，参数how=any表示只要有一个缺失值就删除该行或列，how=all表示只要当所有值都为缺失值时才删除该行或列。此处选择只要有一个缺失值就删除包含缺失值所在的行。</p>
+<pre><code>df.dropna(axis=0, how='any', inplace=True)
+print(df.head())
+</code></pre>
+<p>结果如下：</p>
+<pre><code>login success!
+login respond error_code:0
+login respond error_msg:success
+          Date       Code    High     Low    Open   Close     Volume    Ma20
+19  2018-01-29  sh.601398  7.6900  7.3600  7.3700  7.4300  369534176  6.6735
+20  2018-01-30  sh.601398  7.4200  7.2100  7.4000  7.2800  246540367  6.7285
+21  2018-01-31  sh.601398  7.5000  7.2100  7.2800  7.4800  376775936  6.7945
+22  2018-02-01  sh.601398  7.7000  7.4200  7.4400  7.6800  456814016  6.8750
+23  2018-02-02  sh.601398  7.6700  7.4400  7.6000  7.6000  332259952  6.9510
+</code></pre>
+<h2 id="for-in-遍历循环方式">for in 遍历循环方式</h2>
+<p>我们使用遍历循环实现单均线突破策略，我们遍历全部交易日的收盘价数值和Ma20数值，将收盘价数值减去Ma20数值，并使用np.sign()取差值符号，当收盘价在Ma20上方时差值为正，收盘价在Ma20下方时差值为负，由负转正对应为买点，由正转负对应卖点。</p>
+<pre><code>def forin_looping(df):
+    df['signal'] = 0
+    for i in np.arange(0, df.shape[0]):
+       df.iloc[i, df.columns.get_loc('signal')] = np.sign(float(df.iloc[i]['Close'])-df.iloc[i]['Ma20'])
+    return df
+
+print(forin_looping(df)[0:5])
+</code></pre>
+<p>得到结果如下：</p>
+<pre><code>          Date       Code    High     Low  ...   Close     Volume    Ma20  signal
+19  2018-01-29  sh.601398  7.6900  7.3600  ...  7.4300  369534176  6.6735       1
+20  2018-01-30  sh.601398  7.4200  7.2100  ...  7.2800  246540367  6.7285       1
+21  2018-01-31  sh.601398  7.5000  7.2100  ...  7.4800  376775936  6.7945       1
+22  2018-02-01  sh.601398  7.7000  7.4200  ...  7.6800  456814016  6.8750       1
+23  2018-02-02  sh.601398  7.6700  7.4400  ...  7.6000  332259952  6.9510       1
+</code></pre>
+<p>注意使用sign函数时参数的数据格式应当统一，不然非常容易报错。</p>
+<h2 id="iterrows生成器方式">iterrows()生成器方式</h2>
+<p>另外一种Python中常用的遍历方式为iterrows()生成器方式，其实所谓生成器就是一种特殊的迭代器，内部支持了迭代器协议，Python中提供生成器函数和生成器表达式两种方式实现生成器，每次请求返回一个结果，不需要一次性构建一个结果列表，节省了内存空间。</p>
+<h3 id="迭代器和生成器">迭代器和生成器</h3>
+<p>在for循环中，如</p>
+<pre><code>for i in s:
+    print(i)
+</code></pre>
+<p>在上面的循环中，我们不断的将s的值赋给i，然后打印出来，这种只针对s中元素的循环称为对s的迭代，能够迭代的s称为可迭代的。为了实现for循环，Python需要迭代的对象实现迭代协议或序列协议，以获取一个迭代器，下面是迭代协议的实现，我们实现一个预定义方法：<br>
+<code>__iter__(self): 返回一个迭代器</code><br>
+for在对对象进行迭代时会调用对象的__iter__方法构造一个迭代器，然后对该迭代器进行迭代，迭代过程就是不断调用迭代器的方法获取元素：<br>
+<code>__next__(self): 返回下一个元素，迭代完成抛出stopIteration异常</code><br>
+在此定义上实现了上述两个方法的对象称为迭代器。</p>
+<p>生成器的行为和迭代器非常类似，功能差不多，但是生成器更加优雅，只需要用关键字yield返回，作用于函数上叫生成器函数，函数被调用时会返回一个生成器对象，生成器本质上是迭代器，最大特点就是代码简洁。</p>
+<pre><code>def func():
+    for a in [1,2,3]:
+        yield a
+cls_g = func()
+print(isinstance(cls_g, Iterator))  # True
+print(dir(cls_g))  # 自动具备 __iter__ 和 __next__ 方法
+
+for a in cls_g:
+    print(a)
+# 输出: 1 2 3
+
+# 一种更简单的写法是用 ()
+cls_g = (i for i in [1,2,3])
+</code></pre>
+<p>yield函数与return函数的差别在于，包含yield的方法一般用于迭代，每次执行时遇到yield就返回yield后的结果，但是内部会保留上次执行的状态，下次继续迭代时，会继续执行yield之后的代码，直到再次遇到yield后返回，这种懒加载模式特别适合解决内存占用大的集合问题。如果我们创建了一个包含1万个元素的列表，如果用list返回不仅占用很大的存储空间，而且如果我们仅仅需要访问前几个元素那么后面大多数元素占用的空间就浪费了。生成器则是在迭代过程中推算出后续元素，而不是一次性全部算出。</p>
+<h3 id="使用iterrows实现遍历">使用iterrows()实现遍历</h3>
+<p>用过iterrows()遍历方法计算股票每个交易日收盘价和Ma20的差值，此处iterrows是对dataframe格式数据行进行迭代的一个生成器，它返回每行的索引和包含行本身的对象，代码如下：</p>
+<pre><code>def iterrows_loppiter(df):
+    df['signal'] = 0
+    for index,row in df.iterrows():
+        df.loc[index,'signal'] = np.sign(float(row['Close'])-row['Ma20'])
+    return df
+print(iterrows_loppiter(df)[0:5])
+
+login success!
+login respond error_code:0
+login respond error_msg:success
+          Date       Code    High     Low  ...   Close     Volume    Ma20  signal
+19  2018-01-29  sh.601398  7.6900  7.3600  ...  7.4300  369534176  6.6735       1
+20  2018-01-30  sh.601398  7.4200  7.2100  ...  7.2800  246540367  6.7285       1
+21  2018-01-31  sh.601398  7.5000  7.2100  ...  7.4800  376775936  6.7945       1
+22  2018-02-01  sh.601398  7.7000  7.4200  ...  7.6800  456814016  6.8750       1
+23  2018-02-02  sh.601398  7.6700  7.4400  ...  7.6000  332259952  6.9510       1
+
+[5 rows x 9 columns]
+</code></pre>
+<h2 id="apply循环方式">apply()循环方式</h2>
+<p>apply()方法可将函数应用于dataframe特定的行与列，函数由lambda方式在代码中内嵌实现，lambda为匿名函数，可以省去定义函数的过程，让代码更加精简。lambda函数的末尾包含了axis参数，用来告知Pandas将函数运用于行axis=1或者是列axis=0。apply()方法循环方式如下：</p>
+<pre><code>df['signal'] = df.apply(lambda row: np.sign(float(row['Close'])-row['Ma20']), axis=1)
+print(df.head())
+
+login success!
+login respond error_code:0
+login respond error_msg:success
+          Date       Code    High     Low  ...   Close     Volume    Ma20  signal
+19  2018-01-29  sh.601398  7.6900  7.3600  ...  7.4300  369534176  6.6735     1.0
+20  2018-01-30  sh.601398  7.4200  7.2100  ...  7.2800  246540367  6.7285     1.0
+21  2018-01-31  sh.601398  7.5000  7.2100  ...  7.4800  376775936  6.7945     1.0
+22  2018-02-01  sh.601398  7.7000  7.4200  ...  7.6800  456814016  6.8750     1.0
+23  2018-02-02  sh.601398  7.6700  7.4400  ...  7.6000  332259952  6.9510     1.0
+
+[5 rows x 9 columns]
+</code></pre>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://thxit.github.io/4SOECLCrS/" class="post-title gt-a-link">
+                    一些设想
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">温故而知新</div>
+    <div class="social-container">
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme <a href="https://github.com/imhanjie/gridea-theme-pure" target="_blank">Pure</a>, Powered by <a
+                href="https://gridea.dev" target="_blank">Gridea</a> | <a href="https://thxit.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+</div>
+
+<script>
+  hljs.highlightAll()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

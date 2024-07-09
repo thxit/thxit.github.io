@@ -1,0 +1,222 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>Pandas构建DataFrame股票数据 | 丁酒thxit的小酒坊</title>
+
+<link rel="shortcut icon" href="https://thxit.github.io/favicon.ico?v=1720517683108">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://thxit.github.io/styles/main.css">
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"> -->
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/languages//dart.min.js"></script>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script> -->
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+    
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" href="/">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            丁酒thxit的小酒坊
+        </div>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" id="changeNavbar">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+            <div class="nav-item">
+                
+                <a href="/" class="menu gt-a-link">
+                    首页
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/archives" class="menu gt-a-link">
+                    归档
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/tags" class="menu gt-a-link">
+                    标签
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/post/about" class="menu gt-a-link">
+                    关于
+                </a>
+                
+            </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1720517683108"
+                action="/search/">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+<script>
+    /* 移动端导航栏展开/收起切换 */
+    document.getElementById('changeNavbar').onclick = () => {
+        var element = document.getElementById('navbarSupportedContent');
+        if (element.style.display === 'none' || element.style.display === '') {
+            element.style.display = 'block';
+        } else {
+            element.style.display = 'none';
+        }
+    }
+</script>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Pandas构建DataFrame股票数据
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2023-05-14 ·
+                    </time>
+                    
+                </div>
+                <div class="post-content">
+                    <p>Pandas是Python环境下最有名最专业的数据分析库，如果说NumPy提供了通用的数据处理能力，那么在处理表格时，大多数开发者会使用Pandas作为统计和分析的主要工具。因为Pandas对于数据的处理更为方便快速和简单。</p>
+<p>Pandas是围绕着Serises和DataFrame两个核心数据结构展开的，但是在量化交易系统开发中DataFrame数据结构的使用相对来说比Serises更为广泛。</p>
+<h2 id="dataframe数据生成">DataFrame数据生成</h2>
+<p>以随机漫步的方式获得了收盘股价及对应交易日的涨幅后，我们将这些基础数据生成为DataFrame格式的股票数据。</p>
+<p>DataFrame是一个表格型的数据结构，既有索引index也有列索引columns，创建DataFrame的基本方法为df = pd.DataFrame(data,index=index,columns)，其中data参数的数据类型可以支持由列表、一维ndarray或Serises组成的字典、字典组成的字典、二维ndarray等。像下图，可以把DataFrame看成是Excel的表格形态：<br>
+<img src="https://thxit.github.io/post-images/1684046593743.png" alt="" loading="lazy"><br>
+接下来我们根据创建DataFrame的基本要求将data、index、columns这三个参数准备就绪。关于列索引columns，我们将收盘价定义为“close”，涨跌幅定义为“price range”。行索引index在此处表示为交易日期。Pandas提供了强大的日期数据处理功能，我们使用pandas.data_range()生成DatetimeIndex格式的日期序列，其中参数包括：起始时间start、结束时间end、时期数量peridos、日期间隔频率freq=‘M’月、‘D’天、‘W’周、‘Y’年等等，此处生成从2010-01-01开始的1000个日期的时间序列。</p>
+<pre><code>import pandas as pd
+# 生成时间序列
+dd = pd.date_range('2010-01-01',freq='D',periods=1000)
+print(f'生成日时间序列：\n{dd}')
+
+生成日时间序列：
+DatetimeIndex(['2010-01-01', '2010-01-02', '2010-01-03', '2010-01-04',
+               '2010-01-05', '2010-01-06', '2010-01-07', '2010-01-08',
+               '2010-01-09', '2010-01-10',
+               ...
+               '2012-09-17', '2012-09-18', '2012-09-19', '2012-09-20',
+               '2012-09-21', '2012-09-22', '2012-09-23', '2012-09-24',
+               '2012-09-25', '2012-09-26'],
+              dtype='datetime64[ns]', length=1000, freq='D')
+
+</code></pre>
+<p>我们通过np.random.normal()返回的数据类型为‘numpy.ndarray',属于data参数支持的数据类型，于是我们将data、index、columns三个参数传入创建DataFrame的方法中，就可以生成DataFrame格式的股票交易数据。此处以ndarray组成的字典形式创建DataFrame，字典的每个键所对应的ndarray数组分别成为DataFrame的一列，共享一个index。如下所示：</p>
+<pre><code>import pandas as pd
+import numpy as np
+import random
+
+stock_data = np.random.normal(loc=10.0, scale=1.0, size=1000)
+stock_data =np.around(stock_data, 2)
+pct_change =np.around((stock_data-np.roll(stock_data,1))/np.roll(stock_data,1),2)
+pct_change[0] = np.nan
+
+# 生成时间序列
+dd = pd.date_range('2010-01-01',freq='D',periods=1000)
+
+df_stock = pd.DataFrame({'close':stock_data, 'price range':pct_change}, index=dd)
+print(f'股价交易数据：\n {df_stock.head()}')
+
+股价交易数据：
+             close  price range
+2010-01-01   9.81          NaN
+2010-01-02   8.74        -0.11
+2010-01-03  11.44         0.31
+2010-01-04  10.32        -0.10
+2010-01-05  10.35         0.00
+</code></pre>
+<p>当我们得到DataFrame格式的股票交易数据之后，就能利用Pandas强大的数据分析功能处理我们的数据。此处我们通过Pandas封装的matplotlib绘图功能，绘制其中50个交易日的收盘曲线，用可视化的方式了解随机漫步的股价走势。</p>
+<pre><code>import matplotlib.pyplot as plt
+df_stock.close[150:200].plot(c='b')
+plt.legend(['Close'], loc='best')
+plt.show()
+</code></pre>
+<p>得到的结果如下：<br>
+<img src="https://thxit.github.io/post-images/1684048713347.png" alt="" loading="lazy"></p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://thxit.github.io/d46mBAjiX/" class="post-title gt-a-link">
+                    Numpy模拟随机漫步理论
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">温故而知新</div>
+    <div class="social-container">
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme <a href="https://github.com/imhanjie/gridea-theme-pure" target="_blank">Pure</a>, Powered by <a
+                href="https://gridea.dev" target="_blank">Gridea</a> | <a href="https://thxit.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+</div>
+
+<script>
+  hljs.highlightAll()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

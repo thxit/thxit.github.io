@@ -1,0 +1,203 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>Ubuntu/Debian/CentOS搭建Socks5代理一键脚本 | 丁酒thxit的小酒坊</title>
+
+<link rel="shortcut icon" href="https://thxit.github.io/favicon.ico?v=1720517683108">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://thxit.github.io/styles/main.css">
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"> -->
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/languages//dart.min.js"></script>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script> -->
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+    
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" href="/">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            丁酒thxit的小酒坊
+        </div>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" id="changeNavbar">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+            <div class="nav-item">
+                
+                <a href="/" class="menu gt-a-link">
+                    首页
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/archives" class="menu gt-a-link">
+                    归档
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/tags" class="menu gt-a-link">
+                    标签
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/post/about" class="menu gt-a-link">
+                    关于
+                </a>
+                
+            </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1720517683108"
+                action="/search/">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+<script>
+    /* 移动端导航栏展开/收起切换 */
+    document.getElementById('changeNavbar').onclick = () => {
+        var element = document.getElementById('navbarSupportedContent');
+        if (element.style.display === 'none' || element.style.display === '') {
+            element.style.display = 'block';
+        } else {
+            element.style.display = 'none';
+        }
+    }
+</script>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Ubuntu/Debian/CentOS搭建Socks5代理一键脚本
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2024-06-06 ·
+                    </time>
+                    
+                        <a href="https://thxit.github.io/tag/goWLU8C9_/" class="post-tags">
+                            # vps
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>Socks5属于明文代理，不要用于科学上网，否则会被阻断端口，可用于正常的跳板使用；<br>
+比如SSH转发加速国外VPS的连接速度，特别是一些延迟高或者丢包高的VPS；<br>
+使用Socks5转发后SSH就可以快速稳定的连接了，解决高丢包SSH断开的问题；</p>
+<p>支持系统<br>
+Debian7+ Ubuntu14.04+ CentOS6+</p>
+<h2 id="安装">安装</h2>
+<p>下载脚本<br>
+wget --no-check-certificate https://raw.github.com/Lozy/danted/master/install.sh -O install.sh</p>
+<p>安装脚本<br>
+bash install.sh --port=端口 --user=用户名 --passwd=密码<br>
+其中的端口 用户名 密码自行修改后粘贴到SSH里运行安装即可；<br>
+完成后会提示Dante Server Install Successfuly即表示安装成功；<br>
+安装后如果连接不上，检查设置的端口是否已经放行；<br>
+说明：安装完成后会显示内网IP地址，但在实际使用的时候需要用外网IP地址；</p>
+<h2 id="使用">使用</h2>
+<p>一般使用IP和用户名密码即可使用<br>
+如果需要固定IP或IP段，可以修改配置文件设置白名单<br>
+vi /etc/danted/sockd.conf</p>
+<p>修改以下代码，改成你需要设置的白名单IP或IP段即可，然后重启使其生效；<br>
+client pass { from: 0.0.0.0/0 to: 0.0.0.0/0 }</p>
+<h2 id="卸载">卸载</h2>
+<p>bash install.sh --uninstall</p>
+<h2 id="命令">命令</h2>
+<p>service sockd start	/etc/init.d/sockd start	启动socks5服务器守护进程<br>
+service sockd stop	/etc/init.d/sockd stop	停止socks5服务器守护进程<br>
+service sockd restart	/etc/init.d/sockd restart	重新启动socks5服务器守护进程<br>
+service sockd reload	/etc/init.d/sockd reload	重新加载socks5服务器守护进程<br>
+service sockd status	/	系统进程状态<br>
+service sockd state	/etc/init.d/sockd state	运行状态<br>
+service sockd tail	/etc/init.d/sockd tail	sock 日志<br>
+service sockd adduser	/etc/init.d/sockd adduser	添加pam-auth用户：service sockd adduser NAME PASSWORD<br>
+service sockd deluser	/etc/init.d/sockd deluser	删除pam-auth用户：service sockd deluser NAME</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://thxit.github.io/kiq4yJmXv/" class="post-title gt-a-link">
+                    《人民日报》：黑夜固然深邃寒冷，但前行的道路上总有曙光等待着我们
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">温故而知新</div>
+    <div class="social-container">
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme <a href="https://github.com/imhanjie/gridea-theme-pure" target="_blank">Pure</a>, Powered by <a
+                href="https://gridea.dev" target="_blank">Gridea</a> | <a href="https://thxit.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+</div>
+
+<script>
+  hljs.highlightAll()
+</script>
+
+    </div>
+</div>
+</body>
+</html>
